@@ -1,21 +1,13 @@
-import React, { useState } from "react";
-import { Box, Container, ToggleButton } from "@mui/material";
+import React from "react";
+import { Box, Container } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import { AuthForm } from "forms/AuthForm";
 
 import { AuthPageRightColumn } from "./AuthPageRightColumn";
-import { Styled } from "./AuthPage.styled";
 import { Contacts } from "@mui/icons-material";
+import { AuthToggle } from "./AuthToggle";
 
 export const AuthPage: React.FC = () => {
-  const [alignment, setAlignment] = useState("signIn");
-
-  const handleChangeTab = (_: React.MouseEvent<HTMLElement>, newAlignment: string) => {
-    if (newAlignment !== null) {
-      setAlignment(newAlignment);
-    }
-  };
-
   return (
     <Container
       style={{
@@ -62,24 +54,7 @@ export const AuthPage: React.FC = () => {
                 alignItems: "center",
               }}
             >
-              <Styled.ToggleButtonGroup
-                value={alignment}
-                exclusive
-                onChange={handleChangeTab}
-                aria-label="text alignment"
-                sx={{
-                  display: "inline-flex",
-                  backgroundColor: "#F4F4F4",
-                }}
-              >
-                <ToggleButton value="signIn" sx={{ textTransform: "none" }}>
-                  Sign In
-                </ToggleButton>
-                <ToggleButton value="login" sx={{ textTransform: "none" }}>
-                  Login
-                </ToggleButton>
-              </Styled.ToggleButtonGroup>
-
+              <AuthToggle />
               <AuthForm />
             </Box>
 
