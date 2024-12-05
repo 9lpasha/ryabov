@@ -38,6 +38,12 @@ export const PasswordField = ({ control, errors, password, email, setValue }: Pr
     containsCapital: password ? /[A-Z]/.test(password) : true,
   };
 
+  const noErrors =
+    passwordValidation.containsCapital &&
+    passwordValidation.containsEmail &&
+    passwordValidation.containsNumberOrSymbol &&
+    passwordValidation.minLength;
+
   return (
     <>
       <Controller
@@ -51,8 +57,8 @@ export const PasswordField = ({ control, errors, password, email, setValue }: Pr
             type={showPassword ? "text" : "password"}
             fullWidth
             margin="normal"
-            error={!!errors.password}
-            helperText={errors.password?.message}
+            error={!noErrors}
+            helperText={!noErrors && errors.password?.message}
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
@@ -93,10 +99,10 @@ export const PasswordField = ({ control, errors, password, email, setValue }: Pr
             <Typography
               variant="caption"
               sx={{
-                color: (theme) => theme.palette.customColors[!errors.password && password ? "greenText" : "redText"],
+                color: (theme) => theme.palette.customColors[noErrors ? "greenText" : "redText"],
               }}
             >
-              {password ? (errors.password ? "Weak password" : "Ok") : ""}
+              {password ? (noErrors ? "Ok" : "Weak password") : ""}
             </Typography>
           </Typography>
 

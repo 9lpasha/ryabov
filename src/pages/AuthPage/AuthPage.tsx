@@ -4,8 +4,8 @@ import Grid from "@mui/material/Grid2";
 import { AuthForm } from "forms/AuthForm";
 
 import { AuthPageRightColumn } from "./AuthPageRightColumn";
-import { Contacts } from "@mui/icons-material";
 import { AuthToggle } from "./AuthToggle";
+import { Contacts } from "./Contacts";
 
 export const AuthPage: React.FC = () => {
   return (
@@ -55,6 +55,7 @@ export const AuthPage: React.FC = () => {
               }}
             >
               <AuthToggle />
+
               <AuthForm />
             </Box>
 
